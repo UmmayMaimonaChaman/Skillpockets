@@ -52,7 +52,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/users', {
+      const response = await axios.get('/api/admin/users', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Users fetched:', response.data);
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
 
   const fetchSkills = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/skills', {
+      const response = await axios.get('/api/admin/skills', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Skills fetched:', response.data);
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
 
   const fetchSessions = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/sessions', {
+      const response = await axios.get('/api/admin/sessions', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Sessions fetched:', response.data);
@@ -88,7 +88,7 @@ const AdminDashboard = () => {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/reviews', {
+      const response = await axios.get('/api/admin/reviews', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Reviews fetched:', response.data);
@@ -100,7 +100,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/dashboard-stats', {
+      const response = await axios.get('/api/admin/dashboard-stats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log('Stats fetched:', response.data);
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/admin/users', formData, {
+      await axios.post('/api/admin/users', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFormData({ name: '', email: '', password: '', role: 'user' });
@@ -128,7 +128,7 @@ const AdminDashboard = () => {
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5001/api/admin/users/${editingUser._id}`, formData, {
+      await axios.put(`/api/admin/users/${editingUser._id}`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFormData({ name: '', email: '', password: '', role: 'user' });
@@ -142,7 +142,7 @@ const AdminDashboard = () => {
   const handleDeleteUser = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/admin/users/${userId}`, {
+        await axios.delete(`/api/admin/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchUsers();
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
 
   const handleToggleBan = async (userId) => {
     try {
-      await axios.put(`http://localhost:5001/api/admin/users/${userId}/toggle-ban`, {}, {
+      await axios.put(`/api/admin/users/${userId}/toggle-ban`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchUsers();
@@ -168,7 +168,7 @@ const AdminDashboard = () => {
   const handleDeleteSkill = async (skillId) => {
     if (window.confirm('Are you sure you want to delete this skill?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/admin/skills/${skillId}`, {
+        await axios.delete(`/api/admin/skills/${skillId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchSkills();
@@ -182,7 +182,7 @@ const AdminDashboard = () => {
   const handleDeleteSession = async (sessionId) => {
     if (window.confirm('Are you sure you want to delete this session?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/admin/sessions/${sessionId}`, {
+        await axios.delete(`/api/admin/sessions/${sessionId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchSessions();
@@ -196,7 +196,7 @@ const AdminDashboard = () => {
   const handleDeleteReview = async (reviewId) => {
     if (window.confirm('Are you sure you want to delete this review?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/admin/reviews/${reviewId}`, {
+        await axios.delete(`/api/admin/reviews/${reviewId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchReviews();

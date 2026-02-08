@@ -102,7 +102,7 @@ function EditSkill() {
 
     const fetchSkill = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/skills/${id}`);
+        const response = await fetch(`/api/skills/${id}`);
         if (!response.ok) throw new Error('Skill not found');
         const skillData = await response.json();
         
@@ -155,7 +155,7 @@ function EditSkill() {
 
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:5001/api/skills/${id}`, {
+      const response = await fetch(`/api/skills/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

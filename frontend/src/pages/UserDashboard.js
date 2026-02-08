@@ -24,7 +24,7 @@ const UserDashboard = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/user/profile', {
+      const response = await axios.get('/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(response.data);
@@ -61,7 +61,7 @@ const UserDashboard = () => {
         updateData.newPassword = formData.newPassword;
       }
 
-      await axios.put('http://localhost:5001/api/user/profile', updateData, {
+      await axios.put('/api/user/profile', updateData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

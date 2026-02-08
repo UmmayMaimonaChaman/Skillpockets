@@ -23,7 +23,7 @@ const Profile = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/user/profile', {
+      const response = await fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!response.ok) throw new Error('Failed to fetch profile');
@@ -62,7 +62,7 @@ const Profile = () => {
         updateData.newPassword = formData.newPassword;
       }
 
-      const response = await fetch('http://localhost:5001/api/user/profile', {
+      const response = await fetch('/api/user/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

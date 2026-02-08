@@ -24,10 +24,10 @@ const Reviews = () => {
   const fetchReviews = async () => {
     try {
       const [receivedResponse, myReviewsResponse] = await Promise.all([
-        axios.get(`http://localhost:5001/api/reviews/user/${userId}`, {
+        axios.get(`/api/reviews/user/${userId}`, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get('http://localhost:5001/api/reviews/mine', {
+        axios.get('/api/reviews/mine', {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);

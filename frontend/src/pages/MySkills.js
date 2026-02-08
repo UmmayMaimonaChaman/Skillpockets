@@ -18,7 +18,7 @@ function MySkills() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/skills/mine', {
+      const response = await fetch('/api/skills/mine', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Failed to fetch your skill listings');
@@ -54,7 +54,7 @@ function MySkills() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5001/api/skills/${skillId}`, {
+      const response = await fetch(`/api/skills/${skillId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

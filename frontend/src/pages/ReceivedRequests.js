@@ -16,7 +16,7 @@ function ReceivedRequests() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/skill-requests/received', {
+      const response = await fetch('/api/skill-requests/received', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Failed to fetch received requests');
@@ -41,7 +41,7 @@ function ReceivedRequests() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5001/api/skill-requests/${requestId}/status`, {
+      const response = await fetch(`/api/skill-requests/${requestId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ function SentRequests() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:5001/api/skill-requests/sent', {
+      const res = await fetch('/api/skill-requests/sent', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch sent requests');
@@ -38,7 +38,7 @@ function SentRequests() {
     setRequestErrors(prev => ({ ...prev, [requestId]: '' }));
 
     try {
-      const res = await fetch(`http://localhost:5001/api/skill-requests/${requestId}/status`, {
+      const res = await fetch(`/api/skill-requests/${requestId}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ status: 'cancelled' }),

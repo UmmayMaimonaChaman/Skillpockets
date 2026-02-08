@@ -44,7 +44,7 @@ function AllSkills() {
       setIsLoading(true);
       setErrorMessage('');
       try {
-        const response = await fetch('http://localhost:5001/api/skills');
+        const response = await fetch('/api/skills');
         if (!response.ok) throw new Error('Failed to fetch skill listings');
         const data = await response.json();
         setSkillList(data);
@@ -98,7 +98,7 @@ function AllSkills() {
     }
     
     try {
-      const response = await fetch(`http://localhost:5001/api/skills/${skillId}`, {
+      const response = await fetch(`/api/skills/${skillId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ function AllSkills() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/skill-requests', {
+      const response = await fetch('/api/skill-requests', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -37,7 +37,7 @@ function SessionList() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5001/api/sessions', {
+      const response = await fetch('/api/sessions', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Failed to fetch sessions');
@@ -53,7 +53,7 @@ function SessionList() {
   const fetchAcceptedRequests = async () => {
     if (!token) return;
     try {
-      const response = await fetch('http://localhost:5001/api/skill-requests/received', {
+      const response = await fetch('/api/skill-requests/received', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.ok) {
@@ -70,7 +70,7 @@ function SessionList() {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-      const response = await fetch('http://localhost:5001/api/reviews/mine', {
+      const response = await fetch('/api/reviews/mine', {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) return;
@@ -92,7 +92,7 @@ function SessionList() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5001/api/sessions/${sessionId}`, {
+      const response = await fetch(`/api/sessions/${sessionId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(update),
@@ -144,7 +144,7 @@ function SessionList() {
         comment: createSessionData.comment
       };
 
-      const response = await fetch('http://localhost:5001/api/sessions', {
+      const response = await fetch('/api/sessions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(sessionData),
@@ -181,7 +181,7 @@ function SessionList() {
     const userId = JSON.parse(atob(token.split('.')[1])).userId;
     const reviewee = session.owner._id === userId ? session.requester._id : session.owner._id;
     try {
-      const response = await fetch('http://localhost:5001/api/reviews', {
+      const response = await fetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ reviewee, session: session._id, rating: reviewRating, comment: reviewComment }),
