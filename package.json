@@ -1,0 +1,23 @@
+{
+    "name": "skillpocket",
+    "version": "1.0.0",
+    "description": "SkillSwap Hub - Full Stack MERN Application",
+    "scripts": {
+        "install-all": "cd backend && npm install && cd ../frontend && npm install",
+        "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+        "build": "cd frontend && npm run build",
+        "vercel-build": "cd frontend && npm install && npm run build"
+    },
+    "keywords": [
+        "mern",
+        "skillswap",
+        "react",
+        "nodejs",
+        "mongodb"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
