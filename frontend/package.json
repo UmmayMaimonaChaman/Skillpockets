@@ -18,6 +18,7 @@
     "test": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5001",
   "browserslist": {
     "production": [
       ">0.2%",
