@@ -1,6 +1,13 @@
-# SkillSwap Hub - User Management System
+# SkillPocket – User & Skill Management System
+Swap a skill, light a mind :)
+> **Link** : https://skillpockets-umc.vercel.app/ 
 
-A comprehensive skill exchange platform with full user management capabilities, built with React frontend and Node.js backend following MVC architecture.
+> **Owner:** Ummay Maimona Chaman 
+
+
+A comprehensive skill exchange platform with full user management capabilities, built with **React frontend** and **Node.js backend** following **MVC architecture**. This system allows users to learn and teach skills, schedule sessions, give feedback, and manage requests efficiently.
+
+---
 
 ## 🚀 Features
 
@@ -18,6 +25,137 @@ A comprehensive skill exchange platform with full user management capabilities, 
 - **Skill Management**: Create, view, and manage skills
 - **Request Management**: Handle skill exchange requests
 - **Session Tracking**: Monitor learning sessions
+---
+### 1. Authentication
+**Functional Features:**
+- User & Admin registration and login  
+- JWT-based authentication  
+- Role-based access control (Admin/User)  
+
+**Non-Functional Features:**
+- Secure password hashing (bcrypt)  
+- Token expiration after 7 days  
+- Input validation and XSS protection  
+
+---
+
+### 2. Users
+**Functional Features:**
+- View and update profile  
+- Change password  
+- Personal dashboard for quick actions  
+
+**Non-Functional Features:**
+- Responsive dashboard  
+- Mobile-friendly layout  
+- Minimal latency for profile updates  
+
+---
+
+### 3. Admin
+**Functional Features:**
+- CRUD operations on all users  
+- Ban/unban users  
+- Assign roles (Admin/User)  
+- Admin dashboard with user statistics  
+
+**Non-Functional Features:**
+- Secure access control for admin routes  
+- Real-time status updates  
+- Data aggregation for dashboard metrics  
+
+---
+
+### 4. Skills
+**Functional Features:**
+- Create, view, update, delete skills  
+- View all skills in the platform  
+- Manage user’s own skills  
+
+**Non-Functional Features:**
+- Fast database queries  
+- Validation of skill names  
+- User-friendly skill management UI  
+
+---
+
+### 5. Requests
+**Functional Features:**
+- Send/receive skill learning requests  
+- Accept or reject requests  
+- Track request status  
+
+**Non-Functional Features:**
+- Real-time request updates  
+- Clear status indicators  
+- Notification on request status changes  
+
+---
+
+### 6. Sessions
+**Functional Features:**
+- Schedule sessions after request acceptance  
+- Set session date, time, skill name, and message  
+- Mark session as done  
+
+**Non-Functional Features:**
+- Calendar integration for date selection  
+- Responsive session box UI  
+- Secure session access for intended users only  
+
+---
+
+### 7. Reviews
+**Functional Features:**
+- Provide rating (1–5) after session completion  
+- Add suggestions or feedback  
+- View ratings summary  
+
+**Non-Functional Features:**
+- Real-time update of ratings  
+- Aggregate ratings per user  
+- Intuitive review interface  
+
+---
+
+### 8. Notifications
+**Functional Features:**
+- Alert users about request status  
+- Notify session creation or changes  
+- Inform users of review availability  
+
+**Non-Functional Features:**
+- Non-intrusive, clear alerts  
+- Mobile-friendly notifications  
+- Efficient real-time update system  
+
+---
+
+### 9. Ratings Summary
+**Functional Features:**
+- Dashboard to view given and received ratings  
+- Sort by skill, user, or session  
+- Display average rating per user  
+
+**Non-Functional Features:**
+- Fast aggregation of rating data  
+- Secure access to ratings only for relevant users  
+- Responsive chart and list views  
+
+---
+
+### 10. Navigation & UI Components
+**Functional Features:**
+- Dynamic navbar based on user role  
+- Modals for CRUD operations  
+- Session creation box, review box, and dashboards  
+
+**Non-Functional Features:**
+- Mobile-first design  
+- Responsive layouts for all devices  
+- Minimal latency, smooth interactions  
+
+---
 
 ## 👥 User Accounts
 
@@ -223,5 +361,7 @@ This system follows MVC architecture and best practices for:
 - API design patterns
 
 ## 📄 License
-
+⚠️ Ownership
+Owner: Ummay Maimona Chaman
+This repository and code cannot be copied, shared, or used without explicit permission.
 This project is created for educational and demonstration purposes.
