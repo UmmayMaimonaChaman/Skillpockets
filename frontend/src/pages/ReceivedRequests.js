@@ -19,7 +19,10 @@ function ReceivedRequests() {
       const response = await fetch('/api/skill-requests/received', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (!response.ok) throw new Error('Failed to fetch received requests');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch received requests');
+      }
       const data = await response.json();
       setReceivedRequests(data);
     } catch (err) {
@@ -50,11 +53,11 @@ function ReceivedRequests() {
         body: JSON.stringify({ status: newStatus }),
       });
       if (!response.ok) throw new Error('Failed to update request status');
-      
+
       // Update the request in the local state instead of refetching
-      setReceivedRequests(prevRequests => 
-        prevRequests.map(request => 
-          request._id === requestId 
+      setReceivedRequests(prevRequests =>
+        prevRequests.map(request =>
+          request._id === requestId
             ? { ...request, status: newStatus }
             : request
         )
