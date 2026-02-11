@@ -30,7 +30,7 @@ const AdminDashboard = () => {
       navigate('/login');
       return;
     }
-    
+
     fetchData();
   }, [token, userRole, navigate]);
 
@@ -233,8 +233,8 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <div className="admin-header">
-        <h1>Admin Dashboard</h1>
-        <button 
+        <h1>Admin Dashboard {stats.dbName && <span style={{ fontSize: '0.4em', color: '#666' }}> (DB: {stats.dbName})</span>}</h1>
+        <button
           className="create-user-btn"
           onClick={() => setShowCreateForm(true)}
         >
@@ -244,31 +244,31 @@ const AdminDashboard = () => {
 
       {/* Navigation Tabs */}
       <div className="admin-tabs">
-        <button 
+        <button
           className={`tab ${activeTab === 'dashboard' ? 'active' : ''}`}
           onClick={() => setActiveTab('dashboard')}
         >
           Dashboard
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'users' ? 'active' : ''}`}
           onClick={() => setActiveTab('users')}
         >
           Users
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'skills' ? 'active' : ''}`}
           onClick={() => setActiveTab('skills')}
         >
           Skills
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'sessions' ? 'active' : ''}`}
           onClick={() => setActiveTab('sessions')}
         >
           Sessions
         </button>
-        <button 
+        <button
           className={`tab ${activeTab === 'reviews' ? 'active' : ''}`}
           onClick={() => setActiveTab('reviews')}
         >
@@ -344,19 +344,19 @@ const AdminDashboard = () => {
                     <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                     <td>
                       <div className="action-buttons">
-                        <button 
+                        <button
                           className="edit-btn"
                           onClick={() => openEditForm(user)}
                         >
                           Edit
                         </button>
-                        <button 
+                        <button
                           className={user.isBanned ? 'unban-btn' : 'ban-btn'}
                           onClick={() => handleToggleBan(user._id)}
                         >
                           {user.isBanned ? 'Unban' : 'Ban'}
                         </button>
-                        <button 
+                        <button
                           className="delete-btn"
                           onClick={() => handleDeleteUser(user._id)}
                         >
@@ -384,7 +384,7 @@ const AdminDashboard = () => {
                 <p><strong>Description:</strong> {skill.description}</p>
                 <p><strong>Category:</strong> {skill.category}</p>
                 <p><strong>Created:</strong> {new Date(skill.createdAt).toLocaleDateString()}</p>
-                <button 
+                <button
                   className="delete-btn"
                   onClick={() => handleDeleteSkill(skill._id)}
                 >
@@ -411,7 +411,7 @@ const AdminDashboard = () => {
                 {session.meetLink && (
                   <p><strong>Meet Link:</strong> {session.meetLink}</p>
                 )}
-                <button 
+                <button
                   className="delete-btn"
                   onClick={() => handleDeleteSession(session._id)}
                 >
@@ -439,13 +439,13 @@ const AdminDashboard = () => {
                 <p><strong>Comment:</strong> {review.comment}</p>
                 <p><strong>Date:</strong> {new Date(review.createdAt).toLocaleDateString()}</p>
                 <div className="review-actions">
-                  <button 
+                  <button
                     className="ban-btn"
                     onClick={() => handleToggleBan(review.reviewer._id)}
                   >
                     Ban Reviewer
                   </button>
-                  <button 
+                  <button
                     className="delete-btn"
                     onClick={() => handleDeleteReview(review._id)}
                   >
@@ -468,26 +468,26 @@ const AdminDashboard = () => {
                 type="text"
                 placeholder="Name"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
               />
               <input
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
               />
               <input
                 type="password"
                 placeholder="Password"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
               />
               <select
                 value={formData.role}
-                onChange={(e) => setFormData({...formData, role: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
               >
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
@@ -513,25 +513,25 @@ const AdminDashboard = () => {
                 type="text"
                 placeholder="Name"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
               />
               <input
                 type="email"
                 placeholder="Email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
               />
               <input
                 type="password"
                 placeholder="New Password (leave blank to keep current)"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
               <select
                 value={formData.role}
-                onChange={(e) => setFormData({...formData, role: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
               >
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
