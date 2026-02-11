@@ -1,6 +1,6 @@
 const { connectToDatabase } = require('../_lib/db');
 const { auth, runMiddleware } = require('../_lib/middleware');
-const User = require('../../backend/models/User');
+const User = require('../_models/User');
 const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {

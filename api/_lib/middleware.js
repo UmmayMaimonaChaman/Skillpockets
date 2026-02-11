@@ -18,7 +18,7 @@ function auth(req, res, next) {
 // Admin authorization middleware
 async function adminOnly(req, res, next) {
     try {
-        const User = require('../../backend/models/User');
+        const User = require('../_models/User');
         const user = await User.findById(req.user.userId);
         if (!user || user.role !== 'admin') {
             return res.status(403).json({ message: 'Admin access required' });

@@ -1,5 +1,5 @@
 const { connectToDatabase } = require('../_lib/db');
-const User = require('../../backend/models/User');
+const User = require('../_models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 

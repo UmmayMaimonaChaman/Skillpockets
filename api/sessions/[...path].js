@@ -1,6 +1,6 @@
 const { connectToDatabase } = require('../_lib/db');
 const { auth, runMiddleware } = require('../_lib/middleware');
-const Session = require('../../backend/models/Session');
+const Session = require('../_models/Session');
 
 module.exports = async (req, res) => {
     // Enable CORS

@@ -1,10 +1,10 @@
 const { connectToDatabase } = require('../_lib/db');
 const { auth, adminOnly, runMiddleware } = require('../_lib/middleware');
-const User = require('../../backend/models/User');
-const Skill = require('../../backend/models/Skill');
-const Session = require('../../backend/models/Session');
-const Review = require('../../backend/models/Review');
-const SkillRequest = require('../../backend/models/SkillRequest');
+const User = require('../_models/User');
+const Skill = require('../_models/Skill');
+const Session = require('../_models/Session');
+const Review = require('../_models/Review');
+const SkillRequest = require('../_models/SkillRequest');
 const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {

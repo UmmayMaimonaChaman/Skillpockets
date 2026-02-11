@@ -1,8 +1,8 @@
 const { connectToDatabase } = require('../_lib/db');
 const { auth, runMiddleware } = require('../_lib/middleware');
-const SkillRequest = require('../../backend/models/SkillRequest');
-const Skill = require('../../backend/models/Skill');
-const Session = require('../../backend/models/Session');
+const SkillRequest = require('../_models/SkillRequest');
+const Skill = require('../_models/Skill');
+const Session = require('../_models/Session');
 
 module.exports = async (req, res) => {
     // Enable CORS
