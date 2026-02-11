@@ -29,8 +29,10 @@ module.exports = async (req, res) => {
 
         // Dashboard stats
         if (pathStr === 'dashboard-stats' && req.method === 'GET') {
+            const dbName = mongoose.connection.db.databaseName;
             const totalUsers = await User.countDocuments({ role: 'user' });
             const totalAdmins = await User.countDocuments({ role: 'admin' });
+            const allUsersCount = await User.countDocuments();
             const bannedUsers = await User.countDocuments({ isBanned: true });
             const reportedUsers = await User.countDocuments({ isReported: true });
             const totalSkills = await Skill.countDocuments();
@@ -38,9 +40,13 @@ module.exports = async (req, res) => {
             const totalReviews = await Review.countDocuments();
             const totalRequests = await SkillRequest.countDocuments();
 
+            console.log(`Stats fetched for DB: ${dbName}. Total Users: ${allUsersCount}`);
+
             return res.json({
+                dbName,
                 totalUsers,
                 totalAdmins,
+                allUsersCount,
                 bannedUsers,
                 reportedUsers,
                 totalSkills,
