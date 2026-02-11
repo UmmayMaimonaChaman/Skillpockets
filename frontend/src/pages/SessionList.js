@@ -40,7 +40,10 @@ function SessionList() {
       const response = await fetch('/api/sessions', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (!response.ok) throw new Error('Failed to fetch sessions');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch sessions');
+      }
       const data = await response.json();
       setSessionList(data);
     } catch (err) {
@@ -76,7 +79,7 @@ function SessionList() {
       if (!response.ok) return;
       const data = await response.json();
       setReviewedSessionIds(data.map((r) => r.session));
-    } catch {}
+    } catch { }
   };
 
   useEffect(() => {
@@ -98,16 +101,16 @@ function SessionList() {
         body: JSON.stringify(update),
       });
       if (!response.ok) throw new Error('Failed to update session');
-      
+
       // Update the session in the local state instead of refetching
-      setSessionList(prevSessions => 
-        prevSessions.map(session => 
-          session._id === sessionId 
+      setSessionList(prevSessions =>
+        prevSessions.map(session =>
+          session._id === sessionId
             ? { ...session, ...update }
             : session
         )
       );
-      
+
       setRescheduleId(null);
       setNewTime('');
       setMeetLinkId(null);
@@ -126,7 +129,7 @@ function SessionList() {
 
     try {
       // Find the accepted request that matches the skill
-      const request = acceptedRequests.find(req => 
+      const request = acceptedRequests.find(req =>
         req.skill.title === createSessionData.skillName
       );
 
@@ -228,7 +231,7 @@ function SessionList() {
       <div className="page-content">
         <div className="black-card">
           <h2 style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>Sessions</h2>
-          
+
           {/* Create Session Section */}
           {acceptedRequests.length > 0 && (
             <div className="black-card" style={{ marginBottom: '2rem', background: 'rgba(255, 255, 255, 0.05)' }}>
@@ -236,7 +239,7 @@ function SessionList() {
               <p style={{ color: '#aaa', marginBottom: '1rem' }}>
                 You have {acceptedRequests.length} accepted request(s). You can create a session for any of these.
               </p>
-              <button 
+              <button
                 className="black-btn"
                 onClick={() => setShowCreateSession(true)}
                 style={{ background: '#28a745' }}
@@ -256,7 +259,7 @@ function SessionList() {
 
           {isLoading && <div style={{ textAlign: 'center', color: '#fff' }}>Loading...</div>}
           {errorMessage && <div style={{ color: '#ff4d4f', textAlign: 'center' }}>{errorMessage}</div>}
-          
+
           {sessionList.map((session) => (
             <div key={session._id} className="black-card" style={{ marginBottom: '1.5rem' }}>
               <div style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#fff' }}>
@@ -300,9 +303,9 @@ function SessionList() {
                     >
                       Save
                     </button>
-                    <button 
-                      className="black-btn" 
-                      onClick={() => setRescheduleId(null)} 
+                    <button
+                      className="black-btn"
+                      onClick={() => setRescheduleId(null)}
                       style={{ background: '#dc3545' }}
                     >
                       Cancel
@@ -326,12 +329,12 @@ function SessionList() {
                     >
                       Save
                     </button>
-                    <button 
-                      className="black-btn" 
+                    <button
+                      className="black-btn"
                       onClick={() => {
                         setMeetLinkId(null);
                         setMeetLink('');
-                      }} 
+                      }}
                       style={{ background: '#dc3545' }}
                     >
                       Cancel
@@ -344,15 +347,15 @@ function SessionList() {
                     <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                       {isTeacher(session) && (
                         <>
-                          <button 
-                            className="black-btn" 
+                          <button
+                            className="black-btn"
                             onClick={() => setRescheduleId(session._id)}
                             style={{ background: '#ffc107', color: '#000' }}
                           >
                             Reschedule
                           </button>
-                          <button 
-                            className="black-btn" 
+                          <button
+                            className="black-btn"
                             onClick={() => setMeetLinkId(session._id)}
                             style={{ background: '#17a2b8' }}
                           >
@@ -360,16 +363,16 @@ function SessionList() {
                           </button>
                         </>
                       )}
-                      <button 
-                        className="black-btn" 
+                      <button
+                        className="black-btn"
                         onClick={() => handleUpdateSession(session._id, { status: 'cancelled' })}
                         style={{ background: '#dc3545' }}
                       >
                         Cancel
                       </button>
                       {isLearner(session) && (
-                        <button 
-                          className="black-btn" 
+                        <button
+                          className="black-btn"
                           onClick={() => handleMarkAsDone(session._id)}
                           style={{ background: '#28a745' }}
                         >
@@ -384,9 +387,9 @@ function SessionList() {
                       {reviewSuccess && <div style={{ color: '#52c41a' }}>{reviewSuccess}</div>}
                       <div style={{ marginBottom: '0.5rem' }}>
                         <label style={{ color: '#fff' }}>Rating: </label>
-                        <select 
-                          className="black-input" 
-                          value={reviewRating} 
+                        <select
+                          className="black-input"
+                          value={reviewRating}
                           onChange={(e) => setReviewRating(Number(e.target.value))}
                           style={{ width: 'auto', marginLeft: '0.5rem' }}
                         >
@@ -402,8 +405,8 @@ function SessionList() {
                         onChange={(e) => setReviewComment(e.target.value)}
                         rows={3}
                       />
-                      <button 
-                        className="black-btn" 
+                      <button
+                        className="black-btn"
                         onClick={() => handleReviewSubmit(session)}
                         style={{ marginTop: '0.5rem' }}
                       >
@@ -433,7 +436,7 @@ function SessionList() {
               <select
                 className="black-input"
                 value={createSessionData.skillName}
-                onChange={(e) => setCreateSessionData({...createSessionData, skillName: e.target.value})}
+                onChange={(e) => setCreateSessionData({ ...createSessionData, skillName: e.target.value })}
                 required
               >
                 <option value="">Select Skill</option>
@@ -447,21 +450,21 @@ function SessionList() {
                 className="black-input"
                 type="datetime-local"
                 value={createSessionData.date}
-                onChange={(e) => setCreateSessionData({...createSessionData, date: e.target.value})}
+                onChange={(e) => setCreateSessionData({ ...createSessionData, date: e.target.value })}
                 required
               />
               <textarea
                 className="black-input"
                 placeholder="Session details or instructions..."
                 value={createSessionData.comment}
-                onChange={(e) => setCreateSessionData({...createSessionData, comment: e.target.value})}
+                onChange={(e) => setCreateSessionData({ ...createSessionData, comment: e.target.value })}
                 rows={3}
               />
               <div className="modal-buttons">
                 <button type="submit" className="black-btn">Create Session</button>
-                <button 
-                  type="button" 
-                  className="black-btn" 
+                <button
+                  type="button"
+                  className="black-btn"
                   onClick={() => setShowCreateSession(false)}
                   style={{ background: '#dc3545' }}
                 >

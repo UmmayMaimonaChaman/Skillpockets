@@ -37,7 +37,7 @@ const Reviews = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching reviews:', error);
-      setError('Failed to load reviews.');
+      setError(error.response?.data?.message || error.message);
       setLoading(false);
     }
   };
@@ -77,7 +77,7 @@ const Reviews = () => {
       <div className="page-content">
         <div className="black-card">
           <h2 style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>Reviews</h2>
-          
+
           {error && (
             <div style={{ color: '#ff4d4f', textAlign: 'center', marginBottom: '1rem' }}>
               {error}
@@ -121,9 +121,9 @@ const Reviews = () => {
               ) : (
                 <div style={{ display: 'grid', gap: '1rem' }}>
                   {receivedReviews.map((review) => (
-                    <div key={review._id} className="black-card" style={{ 
-                      background: 'rgba(255, 255, 255, 0.05)', 
-                      border: '1px solid rgba(255, 255, 255, 0.1)' 
+                    <div key={review._id} className="black-card" style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
                     }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                         <h4 style={{ color: '#fff', margin: 0 }}>
@@ -160,9 +160,9 @@ const Reviews = () => {
               ) : (
                 <div style={{ display: 'grid', gap: '1rem' }}>
                   {myReviews.map((review) => (
-                    <div key={review._id} className="black-card" style={{ 
-                      background: 'rgba(255, 255, 255, 0.05)', 
-                      border: '1px solid rgba(255, 255, 255, 0.1)' 
+                    <div key={review._id} className="black-card" style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
                     }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                         <h4 style={{ color: '#fff', margin: 0 }}>
