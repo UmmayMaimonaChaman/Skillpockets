@@ -21,7 +21,10 @@ function SentRequests() {
       const res = await fetch('/api/skill-requests/sent', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (!res.ok) throw new Error('Failed to fetch sent requests');
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch sent requests');
+      }
       const data = await res.json();
       setRequests(data);
     } catch (err) {

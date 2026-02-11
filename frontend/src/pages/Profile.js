@@ -26,7 +26,10 @@ const Profile = () => {
       const response = await fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      if (!response.ok) throw new Error('Failed to fetch profile');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch profile');
+      }
       const data = await response.json();
       setUser(data);
       setFormData({
@@ -45,7 +48,7 @@ const Profile = () => {
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
-    
+
     if (formData.newPassword && formData.newPassword !== formData.confirmPassword) {
       alert('New passwords do not match');
       return;
@@ -109,7 +112,7 @@ const Profile = () => {
         <div className="black-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
             <h1 style={{ color: '#fff', margin: 0 }}>Profile</h1>
-            <button 
+            <button
               className="black-btn"
               onClick={() => setEditing(!editing)}
             >
@@ -119,7 +122,7 @@ const Profile = () => {
 
           <div style={{ marginBottom: '2rem' }}>
             <h2 style={{ color: '#fff', marginBottom: '1rem' }}>Profile Information</h2>
-            
+
             {!editing ? (
               <div style={{ display: 'grid', gap: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', padding: '1rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', borderLeft: '4px solid #667eea' }}>
@@ -154,18 +157,18 @@ const Profile = () => {
                   <input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     className="black-input"
                   />
                 </div>
-                
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   <label style={{ fontWeight: '600', color: '#fff' }}>Email:</label>
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     className="black-input"
                   />
@@ -173,33 +176,33 @@ const Profile = () => {
 
                 <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
                   <h3 style={{ margin: '0 0 1rem 0', color: '#fff', fontSize: '1.1rem', fontWeight: '600' }}>Change Password (Optional)</h3>
-                  
+
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
                     <label style={{ fontWeight: '600', color: '#fff' }}>Current Password:</label>
                     <input
                       type="password"
                       value={formData.currentPassword}
-                      onChange={(e) => setFormData({...formData, currentPassword: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, currentPassword: e.target.value })}
                       className="black-input"
                     />
                   </div>
-                  
+
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
                     <label style={{ fontWeight: '600', color: '#fff' }}>New Password:</label>
                     <input
                       type="password"
                       value={formData.newPassword}
-                      onChange={(e) => setFormData({...formData, newPassword: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
                       className="black-input"
                     />
                   </div>
-                  
+
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <label style={{ fontWeight: '600', color: '#fff' }}>Confirm New Password:</label>
                     <input
                       type="password"
                       value={formData.confirmPassword}
-                      onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                       className="black-input"
                     />
                   </div>
@@ -209,8 +212,8 @@ const Profile = () => {
                   <button type="submit" className="black-btn">
                     Save Changes
                   </button>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="black-btn"
                     onClick={() => setEditing(false)}
                     style={{ background: 'rgba(255, 255, 255, 0.1)', color: '#fff', border: '2px solid rgba(255, 255, 255, 0.3)' }}
@@ -225,21 +228,21 @@ const Profile = () => {
           <div style={{ marginTop: '2rem' }}>
             <h2 style={{ color: '#fff', marginBottom: '1rem' }}>Quick Actions</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-              <button 
+              <button
                 className="black-btn"
                 onClick={() => navigate('/sessions')}
                 style={{ background: '#28a745' }}
               >
                 View Sessions
               </button>
-              <button 
+              <button
                 className="black-btn"
                 onClick={() => navigate('/skills/mine')}
                 style={{ background: '#17a2b8' }}
               >
                 My Skills
               </button>
-              <button 
+              <button
                 className="black-btn"
                 onClick={() => navigate('/requests/received')}
                 style={{ background: '#ffc107', color: '#000' }}
