@@ -11,7 +11,7 @@ function auth(req, res, next) {
         req.user = decoded;
         next();
     } catch (err) {
-        res.status(401).json({ message: 'Token is not valid' });
+        res.status(401).json({ message: `Token invalid: ${err.message}` });
     }
 }
 
@@ -25,7 +25,7 @@ async function adminOnly(req, res, next) {
         }
         next();
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: `Admin check failed: ${err.message}` });
     }
 }
 

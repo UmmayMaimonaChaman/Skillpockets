@@ -95,6 +95,6 @@ module.exports = async (req, res) => {
         return res.status(404).json({ message: 'Route not found' });
     } catch (err) {
         console.error('Skills API error:', err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: `Skills API error: ${err.message}` });
     }
 };

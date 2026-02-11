@@ -69,6 +69,6 @@ module.exports = async (req, res) => {
         return res.status(404).json({ message: 'Route not found' });
     } catch (err) {
         console.error('Sessions API error:', err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: `Sessions API error: ${err.message}` });
     }
 };
