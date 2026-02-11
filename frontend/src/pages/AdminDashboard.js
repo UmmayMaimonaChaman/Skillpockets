@@ -305,6 +305,11 @@ const AdminDashboard = () => {
               <p>{stats.totalReviews || 0}</p>
             </div>
           </div>
+          {stats.message && stats.message.includes('API error') && (
+            <div style={{ color: '#ff4d4f', textAlign: 'center', marginTop: '1rem', padding: '1rem', background: 'rgba(255,77,79,0.1)', borderRadius: '8px' }}>
+              Backend Error: {stats.message}
+            </div>
+          )}
         </div>
       )}
 

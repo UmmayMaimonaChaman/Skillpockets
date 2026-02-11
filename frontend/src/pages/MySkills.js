@@ -21,7 +21,10 @@ function MySkills() {
       const response = await fetch('/api/skills/mine', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (!response.ok) throw new Error('Failed to fetch your skill listings');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch your skill listings');
+      }
       const data = await response.json();
       setMySkillList(data);
     } catch (err) {
@@ -47,7 +50,7 @@ function MySkills() {
     if (!window.confirm('Are you sure you want to delete this skill?')) {
       return;
     }
-    
+
     const token = localStorage.getItem('token');
     if (!token) {
       setErrorMessage('You must be logged in to delete a skill.');
@@ -91,10 +94,10 @@ function MySkills() {
                   <strong>Availability:</strong> {skill.availability.join(', ')}
                 </div>
               )}
-              <div style={{ 
-                marginTop: '1rem', 
-                display: 'flex', 
-                gap: '0.5rem', 
+              <div style={{
+                marginTop: '1rem',
+                display: 'flex',
+                gap: '0.5rem',
                 flexWrap: 'wrap',
                 justifyContent: 'flex-start'
               }}>

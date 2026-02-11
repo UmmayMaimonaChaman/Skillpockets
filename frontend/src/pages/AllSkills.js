@@ -33,7 +33,7 @@ function AllSkills() {
       const payload = JSON.parse(atob(token.split('.')[1]));
       currentUserId = payload.userId;
     }
-  } catch {}
+  } catch { }
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -45,7 +45,10 @@ function AllSkills() {
       setErrorMessage('');
       try {
         const response = await fetch('/api/skills');
-        if (!response.ok) throw new Error('Failed to fetch skill listings');
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || 'Failed to fetch skill listings');
+        }
         const data = await response.json();
         setSkillList(data);
       } catch (err) {
@@ -90,13 +93,13 @@ function AllSkills() {
     if (!window.confirm('Are you sure you want to delete this skill?')) {
       return;
     }
-    
+
     const token = localStorage.getItem('token');
     if (!token) {
       alert('You must be logged in to delete a skill.');
       return;
     }
-    
+
     try {
       const response = await fetch(`/api/skills/${skillId}`, {
         method: 'DELETE',
@@ -105,12 +108,12 @@ function AllSkills() {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Failed to delete skill');
       }
-      
+
       // Remove the skill from the list
       setSkillList(prevSkills => prevSkills.filter(skill => skill._id !== skillId));
       alert('Skill deleted successfully!');
@@ -168,10 +171,10 @@ function AllSkills() {
         <div className="black-card">
           <h2 style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>All Skill Listings</h2>
           {/* Filter/Search Bar */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            marginBottom: '2rem', 
+          <div style={{
+            display: 'flex',
+            gap: '1rem',
+            marginBottom: '2rem',
             flexWrap: 'wrap',
             justifyContent: 'center'
           }}>
@@ -228,10 +231,10 @@ function AllSkills() {
                   <strong>Availability:</strong> {skill.availability.join(', ')}
                 </div>
               )}
-              <div style={{ 
-                marginTop: '1rem', 
-                display: 'flex', 
-                gap: '0.5rem', 
+              <div style={{
+                marginTop: '1rem',
+                display: 'flex',
+                gap: '0.5rem',
                 flexWrap: 'wrap',
                 justifyContent: 'flex-start'
               }}>
@@ -294,7 +297,7 @@ function AllSkills() {
             maxWidth: '90vw',
             position: 'relative',
           }}>
-            <button 
+            <button
               style={{
                 position: 'absolute',
                 top: '1rem',
@@ -304,7 +307,7 @@ function AllSkills() {
                 border: 'none',
                 fontSize: '1.5rem',
                 cursor: 'pointer',
-              }} 
+              }}
               onClick={closeRequestModal}
             >
               &times;
