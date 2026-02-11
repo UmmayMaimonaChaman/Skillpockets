@@ -39,9 +39,9 @@ const SkillRequestSchema = new mongoose.Schema({
   },
 });
 
-SkillRequestSchema.pre('save', function(next) {
+SkillRequestSchema.pre('save', function (next) {
   this.updatedAt = Date.now();
   next();
 });
 
-module.exports = mongoose.model('SkillRequest', SkillRequestSchema); 
+module.exports = mongoose.models.SkillRequest || mongoose.model('SkillRequest', SkillRequestSchema);
