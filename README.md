@@ -5,7 +5,8 @@ Swap a skill, light a mind :)
 > **Owner:** Ummay Maimona Chaman 
 
 
-This is my first MERN‑based website project, dedicated to my four best friends, with the login and logout pages styled in a Studio Ghibli theme. This is a comprehensive skill exchange platform with full user management capabilities, built with **React frontend** and **Node.js backend** following **MVC architecture**. This system allows users to learn and teach skills, schedule sessions, give feedback, and manage requests efficiently.
+This is my first MERN‑based website project, dedicated to my four best friends (Prova,Onon,Jubaida,Rizve), with the login and logout pages styled in a Studio Ghibli theme.
+SkillPocket is a comprehensive skill exchange platform with full user management capabilities, built with **React frontend** and **Node.js backend** following **MVC architecture**. This system allows users to learn and teach skills, schedule sessions, give feedback, and manage requests efficiently.
 
 ---
 
