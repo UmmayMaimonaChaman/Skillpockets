@@ -1,4 +1,14 @@
 # SkillPocket – User & Skill Management System
+![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Framework-Express.js-000000?style=flat-square&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens)
+![Architecture](https://img.shields.io/badge/Architecture-MVC-blue?style=flat-square)
+![Platform](https://img.shields.io/badge/Platform-Skill%20Exchange%20App-purple?style=flat-square)
+![Project](https://img.shields.io/badge/Project-Full%20Stack%20Web%20App-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Research%20Prototype-lightgrey?style=flat-square)
+
 Swap a skill, light a mind :)
 > **Link** : https://skillpockets-umc.vercel.app/ 
 
